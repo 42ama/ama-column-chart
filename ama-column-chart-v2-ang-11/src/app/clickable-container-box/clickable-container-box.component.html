@@ -1,0 +1,7 @@
+<div class="container"
+    [style.width.px]="options.container.width"
+    [style.height.px]="options.container.height"
+    [style.transform]="'translate3d(' + options.container.left + 'px,' + options.container.top + 'px,' + '0px)'"
+    (mousedown)="onClick($event)">            
+    <span class="plus unselectable">+</span>
+</div>

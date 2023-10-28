@@ -1,0 +1,21 @@
+<div #containerBox>
+    <div #container class="container"
+        [style.width.px]="options.container.width"
+        [style.height.px]="options.container.height"
+        [style.transform]="'translate3d(' + options.container.left + 'px,' + options.container.top + 'px,' + '0px)'">
+
+        <div #container class="box"
+            [style.width.px]="options.container.width"
+            [style.height.px]="options.box.height"
+            (window:mouseup)="setStatus($event, 0)">
+
+            <div class="resize-action" (mousedown)="setStatus($event, 1)"></div>        
+        </div>
+
+        <span class="fill-percent unselectable">{{options.fillPercent}}%</span>
+    </div>
+    <div class="buttons-container">
+        <div class="remove-button" (mousedown)="removeContainer($event)">X</div>
+        <div class="lock-button" (mousedown)="lockUnlock($event)">{{options.lockStatus.text}}</div>
+    </div>
+</div>

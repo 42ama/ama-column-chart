@@ -1,0 +1,16 @@
+<table class="controller-table">
+    <tr>
+        <td *ngFor="let option of containerBoxOptions" >
+            <resizable-container-box #containerBox 
+                [options]="option"
+                (removeEvent)="onRemoveContainerEvent($event)">
+            </resizable-container-box>
+        </td>
+        <td class="container-box">
+            <clickable-container-box #addBox
+                [options]="addBoxOptions"
+                (onClickEvent)="onAddClick()">
+            </clickable-container-box>
+        </td>
+    </tr>
+</table>
