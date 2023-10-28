@@ -1,0 +1,80 @@
+// Контейнер
+.container {
+	outline: 1px dashed;
+
+	
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// Коробка заполняющая контейнер
+.box {
+    background-color: #80ff80;
+
+    bottom: 0%;
+    position: absolute;
+}
+
+// Полоска для изменения процента заполнения контейнера
+.resize-action {
+	border-style: solid;
+	border-bottom: 5px solid black;
+    width: 101%;
+
+	position: relative; 
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+
+	&:hover {
+		cursor: nwse-resize;
+	}
+
+	&:active {
+		cursor: nwse-resize;
+	}
+}
+
+// Текст - процент заполнения контейнера
+.fill-percent {
+    font-size: 250%;
+	z-index: 50;
+}
+
+// Выключаем выбор текста внутри контейнера
+*.unselectable {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+ }
+
+// Блок с кнопками для контейнера
+ .buttons-container { 
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	margin: 10px;
+}
+
+// Кнопки в блоке для кнопок
+.buttons-container *{ 
+	cursor: pointer;
+
+	font-size: 200%;
+
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+// Кнопка - удалить
+.remove-button { 
+	border: 1px solid red; 
+}
+
+// Кнопка фиксации
+.lock-button { 
+	border: 1px solid yellowgreen; 
+}
