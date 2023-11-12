@@ -1,21 +1,28 @@
 <div #containerBox>
-    <div #container class="container"
+    <div #container class="container unselectable btn-outline-success"
+        [ngClass]="{'container-locked': options.lockStatus.isLocked}"
         [style.width.px]="options.container.width"
         [style.height.px]="options.container.height"
         [style.transform]="'translate3d(' + options.container.left + 'px,' + options.container.top + 'px,' + '0px)'">
 
-        <div #container class="box"
+        <div #container class="box unselectable"
+            [ngClass]="{'box-locked': options.lockStatus.isLocked}"
             [style.width.px]="options.container.width"
             [style.height.px]="options.box.height"
             (window:mouseup)="setStatus($event, 0)">
 
-            <div class="resize-action" (mousedown)="setStatus($event, 1)"></div>        
+            <div class="resize-action unselectable" (mousedown)="setStatus($event, 1)"></div>        
         </div>
 
         <span class="fill-percent unselectable">{{options.fillPercent}}%</span>
     </div>
     <div class="buttons-container">
-        <div class="remove-button" (mousedown)="removeContainer($event)">X</div>
-        <div class="lock-button" (mousedown)="lockUnlock($event)">{{options.lockStatus.text}}</div>
+        <div class="remove-button btn btn-outline-danger unselectable"
+                (mousedown)="removeContainer($event)"
+                *ngIf="options.isRemoveButtonShown == true">X</div>
+        <div class="lock-button btn unselectable"
+                [ngClass]="{'btn-warning': options.lockStatus.isLocked,
+                            'btn-outline-warning': !options.lockStatus.isLocked}"
+                (mousedown)="lockUnlock($event)">{{options.lockStatus.text}}</div>
     </div>
 </div>

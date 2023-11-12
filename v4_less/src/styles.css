@@ -1,13 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
 .ama-main {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /*
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    header {
+        max-width: 80vh;
+    }
+    */
 }
-.ama-main header {
-  max-width: 80vh;
+.ama-main .ama-page {
+  margin-left: auto;
+  margin-right: auto;
 }
-.ama-main .ama-text {
-  max-width: 77vh;
+@media (min-width: 728px) {
+  .ama-main .ama-page {
+    max-width: 680px;
+  }
+}
+*.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }

@@ -1,37 +1,56 @@
-// Контейнер
-.container {
-	outline: 1px dashed;
+@ama-border-radius: 0.375rem;
+@base-bg-color-transition: background-color 0.5s ease;
 
-	
+// Контейнер
+.container {	
     display: flex;
     align-items: center;
     justify-content: center;
+
+	border-radius: @ama-border-radius;
+
+	background-color: #799286;
+
+	transition: @base-bg-color-transition;
+}
+
+.container-locked {	
+	background-color: #dbd2b8;
+	transition: @base-bg-color-transition;
 }
 
 // Коробка заполняющая контейнер
 .box {
-    background-color: #80ff80;
-
     bottom: 0%;
     position: absolute;
+	
+	border-radius: @ama-border-radius;
+
+    background-color: #198754;
+	transition: @base-bg-color-transition;
+}
+
+.box-locked {
+	background-color: #ffc107;
+	transition: @base-bg-color-transition;
 }
 
 // Полоска для изменения процента заполнения контейнера
 .resize-action {
 	border-style: solid;
 	border-bottom: 5px solid black;
-    width: 101%;
+    width: 100%;
 
 	position: relative; 
     left: 50%;
     transform: translate3d(-50%, -50%, 0);
 
 	&:hover {
-		cursor: nwse-resize;
+		cursor: pointer;
 	}
 
 	&:active {
-		cursor: nwse-resize;
+		cursor: pointer;
 	}
 }
 
@@ -39,24 +58,15 @@
 .fill-percent {
     font-size: 250%;
 	z-index: 50;
+	color: white;
 }
-
-// Выключаем выбор текста внутри контейнера
-*.unselectable {
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
- }
 
 // Блок с кнопками для контейнера
  .buttons-container { 
 	display: flex;
     align-items: center;
     justify-content: center;
-	margin: 10px;
+	margin-top: 10px;
 }
 
 // Кнопки в блоке для кнопок
@@ -67,14 +77,4 @@
 
 	margin-left: 5%;
 	margin-right: 5%;
-}
-
-// Кнопка - удалить
-.remove-button { 
-	border: 1px solid red; 
-}
-
-// Кнопка фиксации
-.lock-button { 
-	border: 1px solid yellowgreen; 
 }

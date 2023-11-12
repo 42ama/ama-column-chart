@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ROUTES } from '../app-routes';
 
 @Component({
   selector: 'app-page-about',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./page-about.component.less']
 })
 export class PageAboutComponent {
-
+  public ROUTES = ROUTES;
 }

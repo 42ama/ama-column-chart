@@ -1,5 +1,5 @@
 export const ROUTES = {
-    About: 'about',
-    ContainerBox: 'container-box',
-    Features: 'features',
+    About: '/about',
+    ContainerBox: '/container-box',
+    Features: '/features',
    };

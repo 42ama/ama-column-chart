@@ -30,11 +30,11 @@ import { TopPanelComponent } from './top-panel/top-panel.component';
     BrowserModule,
     //AppRoutingModule
     RouterModule.forRoot([
-      {path: ROUTES.About, component: PageAboutComponent},
-      {path: ROUTES.ContainerBox, component: PageContainerBoxComponent},
-      {path: ROUTES.Features, component: PageFeaturesComponent},
-      {path: '', redirectTo: '/' + ROUTES.About, pathMatch: 'full'},
-      {path: '**', component: PageNotFoundComponent}
+      {path: ROUTES.About.replace(/^\//, ''), component: PageAboutComponent},
+      {path: ROUTES.ContainerBox.replace(/^\//, ''), component: PageContainerBoxComponent},
+      {path: ROUTES.Features.replace(/^\//, ''), component: PageFeaturesComponent},
+      {path: '', redirectTo: ROUTES.About.replace(/^\//, ''), pathMatch: 'full'}, // С корня редириектим на About.
+      {path: '**', component: PageNotFoundComponent} // С любой страницы редиректим на 404.
     ]),
   ],
   providers: [],

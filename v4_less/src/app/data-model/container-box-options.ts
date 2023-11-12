@@ -45,6 +45,11 @@ export class ContainerBoxOptions {
      * Observer наблюдающий за процентом заполнения.
      */
     fillChangedObserver: Observer<string>;
+
+    /**
+     * Видно ли кнопку удаления столбика.
+     */
+    isRemoveButtonShown: boolean = true;
   
     
     /**
@@ -77,7 +82,7 @@ export class ContainerBoxOptions {
    * Устанавливает высотку коробки по переданному проценту заполнения.
    * @param {number} percent Процент заполнения контейнера.
    */
-  public setBoxHeightByPercent(percent: number, recalculateAll: boolean = false) {
+  public setHeightByPercent(percent: number, recalculateAll: boolean = false) {
     percent = Math.round(percent);
     
     let newHeigth: number;
@@ -129,9 +134,19 @@ export class ContainerBoxOptions {
   public lockUnlock() {
     this.lockStatus.isLocked = !this.lockStatus.isLocked;
 
-    this.lockStatus.text = this.lockStatus.isLocked
-      ? "Unlock"
-      : "Lock";
+    console.log("new locked status:" + this.lockStatus.isLocked);
+
+    let text;
+    if (this.lockStatus.isLocked) {
+      text = "Unlock";
+    } else {
+      text = "Lock";
+    }
+    this.lockStatus.text = text ;
+  }
+
+  public setIsRemoveButtonShown(isShown: boolean) {
+    this.isRemoveButtonShown = isShown;
   }
 
   /**

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
 import { ContainerBoxOptions } from '../data-model/container-box-options';
+import { ROUTES } from '../app-routes';
 
 @Component({
   selector: 'resizable-container-box-controller',
@@ -10,6 +11,9 @@ import { ContainerBoxOptions } from '../data-model/container-box-options';
  * Контроллер для работы с множеством контейнеров
  */
 export class ResizableContainerBoxControllerComponent {
+
+  public ROUTES = ROUTES;
+
   /**
    * Базовый экземпляр настроек для копирования.
    */
@@ -28,7 +32,7 @@ export class ResizableContainerBoxControllerComponent {
   /**
    * Изначальное количество контейнеров.
    */
-  public containersStartCount: number = 3;
+  public containersStartCount: number = 2;
 
   /**
    * Видно ли область для добавления столбиков.
@@ -38,7 +42,7 @@ export class ResizableContainerBoxControllerComponent {
   /**
    * Максимальное количетсво столбиков.
    */
-  public containerMaxCount: number = 5;
+  public containerMaxCount: number = 3;
 
   /**
    * Текущее количеств столбиков.
@@ -52,7 +56,7 @@ export class ResizableContainerBoxControllerComponent {
     this.sampleContainerBoxOptions = new ContainerBoxOptions(
       {
         container: {
-          left: 0, top: 0, height: 400, width: 200
+          left: 0, top: -10, height: 400, width: 200
         },
         box: {
           height: 133
@@ -67,6 +71,8 @@ export class ResizableContainerBoxControllerComponent {
     for (let i = 0; i < this.containersStartCount; i++) {
       this.addSampleContainerBox();
     }
+
+    this.recalculateAllBoxesPercent();
   }
 
   /**
@@ -121,7 +127,7 @@ export class ResizableContainerBoxControllerComponent {
       return boxId !== item.id;
     });
     console.log("Remoed container! New count: " +  + this._containerCount);
-
+    
     this.anyChanged();
   }
 
@@ -161,6 +167,10 @@ export class ResizableContainerBoxControllerComponent {
    * Пересчитывает процент заполнения во всех контейнерах
    */
   anyChanged(): void {
+    this.recalculateAllBoxesPercent();
+  }
+  
+  recalculateAllBoxesPercent(): void {
     const delta = this.getChecksumDelta();
 
     let boxes = this.getContainerBoxOptionsReady(delta);
@@ -168,11 +178,15 @@ export class ResizableContainerBoxControllerComponent {
     if (boxes.length === 0) {
       return;
     }
+
+    // Если больше одной коробки, то их можно удалять
+    const isRemoveButtonShown = this.containerBoxOptions.length !== 1; 
    
     let singleContainerDelta = delta / boxes.length;
     if (singleContainerDelta !== 0) {
       boxes.forEach(function(item) {
-        item.setBoxHeightByPercent(item.fillPercent + singleContainerDelta);
+        item.setHeightByPercent(item.fillPercent + singleContainerDelta);
+        item.setIsRemoveButtonShown(isRemoveButtonShown);
       }, this);
     }
   }
