@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ROUTES } from '../app-routes';
 
 @Component({
   selector: 'app-page-features',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class PageFeaturesComponent {
 
+  public ROUTES = ROUTES;
 }
